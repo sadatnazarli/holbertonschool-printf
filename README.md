@@ -38,6 +38,6 @@ We've included a sample `main.c` file to test the function. Feel free to modify 
 
 
 # Authors
-+ Sadat Nazarli [Profile] (https://github.com/sadatnazarli)
-+ Cavid Agazade [Profile] (https://github.com/justjavid)
++ Sadat Nazarli [Profile](https://github.com/sadatnazarli)
++ Cavid Agazade [Profile](https://github.com/justjavid)
 
