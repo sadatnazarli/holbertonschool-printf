@@ -1,26 +1,26 @@
 .TH _printf 3 "22 July 2024" "1" "man page for _printf"
 .SH NAME
 .B _printf
-\- Renewed printf function
+\- Updated version of printf
 .SH SYNOPSIS
 .B #include "main.h"
 .SH DESCRIPTION
-The \fB_printf()\fP function produces output according to a format specified in the argument list. The output is written to \fIstdout\fP, the standard output stream.
+The \fB_printf()\fP function creates output based on a format you provide. It sends the output to \fIstdout\fP, which is the standard output stream (usually your screen).
 .SH USAGE
-If you want to use this function, you must include the \fBmain.h\fP header file. The function recognizes the following format specifiers:
+To use this function, make sure to include the \fBmain.h\fP header file in your code. The function supports the following format specifiers:
 .RS 4
 .TP
 .B %s
-Used to print strings
+Prints strings
 .TP
 .B %c
-Used to print characters
+Prints characters
 .TP
 .B %i
-Print integers of max and min size of an integer (\fBint\fP) type
+Prints integers (whole numbers)
 .TP
 .B %d
-Print integers of max and min size of an integer (\fBint\fP) type
+Prints integers (whole numbers)
 .RE
 .SH "SEE ALSO"
 .B printf(1)
@@ -29,3 +29,4 @@ No known bugs.
 .SH AUTHORS
 Sadat Nazarli
 Cavid Agazade
+
