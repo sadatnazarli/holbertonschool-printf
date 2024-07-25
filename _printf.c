@@ -42,6 +42,11 @@ int _printf(const char *format, ...)
 	va_list args;
         va_start(args, format);
 	i = 0, count = 0;
+	if (!format)
+	{
+		_putchar('\0');
+		return (0);
+	}
     while (format && format[i])
     {
             if (format[i] == '%' && format[i + 1])
