@@ -40,7 +40,7 @@ int _printf_s(char *str)
  *  @n: given number
  *  Return: nothing
  */
-void printnumber(int n)
+void printnumber(int64_t n)
 {
 
 	if (n < 0)
