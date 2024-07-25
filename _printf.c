@@ -23,7 +23,7 @@ int _printf_s(char *str)
                 _putchar(ptr[j]);
                 j++;
         }
-        return (j - 1);
+        return (j);
 }
 
 
@@ -73,5 +73,5 @@ int _printf(const char *format, ...)
                     i++;
             }
     }
-    return(count);
+    return (count);
 }
