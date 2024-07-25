@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h>
 #include <stdarg.h>
 #include <unistd.h>
 
@@ -35,13 +36,51 @@ int _printf_s(char *str)
 }
 
 /**
+ *  _printf_di - printf for %d and %i conversion specifier.
+ *  @n: given number
+ *  Return: length of number
+ */
+int _printf_di(int n)
+{
+	int a, i, j, count;
+	int *arr;
+
+	i = 0, count = 0;
+	if (n == 0)
+	{
+		_putchar(0 + '0');
+		return (1);
+	}
+	if (n < 0)
+	{
+		_putchar('-');
+		count++;
+		n = -n;
+	}
+	arr = malloc(4);
+	while (n / 10)
+	{
+		a = n % 10;
+		arr[i] = a;
+		n = n / 10;
+		arr = realloc(arr, sizeof(arr) + 4);
+		i++;
+	}
+	arr = realloc(arr, sizeof(arr) + 4);
+	arr[i] = n;
+	j = i;
+	for (; i >= 0; i--)
+	_putchar('0' + arr[i]);
+	return (j + 1 + count);
+}
+/**
  *  _printf - printf.2
  *  @format: what we are going to print with printf
  *  Return: the number of characters printed
  */
 int _printf(const char *format, ...)
 {
-	int i, s, count;
+	int i, count;
 	va_list args;
 
 	va_start(args, format);
@@ -55,12 +94,15 @@ int _printf(const char *format, ...)
 			switch (format[i + 1])
 			{
 				case 's':
-					s = _printf_s(va_arg(args, char*));
-					count += s;
+					count += _printf_s(va_arg(args, char*));
 					break;
 				case 'c':
 					_putchar(va_arg(args, int));
 					count++;
+					break;
+				case 'd':
+				case 'i':
+					count += _printf_di(va_arg(args, int));
 					break;
 				default:
 					if (format[i + 1] == '%')
