@@ -36,42 +36,51 @@ int _printf_s(char *str)
 }
 
 /**
- *  _printf_di - printf for %d and %i conversion specifier.
+ *  printnumber - prints given integer number
  *  @n: given number
- *  Return: length of number
+ *  Return: nothing
  */
-int _printf_di(int n)
+void printnumber(int n)
 {
-	int a, i, j, count;
-	int *arr;
 
-	i = 0, count = 0;
-	if (n == 0)
-	{
-		_putchar(0 + '0');
-		return (1);
-	}
 	if (n < 0)
 	{
 		_putchar('-');
+		n = -n;
+	}
+
+	if (n == 0)
+		_putchar(0 + '0');
+
+	if (n / 10)
+		printnumber(n / 10);
+
+	_putchar(n % 10 + '0');
+}
+
+/**
+ *  count_digits - returns count of digits of given integer number.
+ *  @n: given number
+ *  Return: length of number
+ */
+int count_digits(int n)
+{
+	int count = 0;
+
+	if (n == 0)
+		return (1);
+	if (n < 0)
+	{
 		count++;
 		n = -n;
 	}
-	arr = malloc(4);
 	while (n / 10)
 	{
-		a = n % 10;
-		arr[i] = a;
+		count++;
 		n = n / 10;
-		arr = realloc(arr, sizeof(arr) + 4);
-		i++;
 	}
-	arr = realloc(arr, sizeof(arr) + 4);
-	arr[i] = n;
-	j = i;
-	for (; i >= 0; i--)
-	_putchar('0' + arr[i]);
-	return (j + 1 + count);
+	count++;
+	return (count);
 }
 /**
  *  _printf - printf.2
@@ -80,7 +89,7 @@ int _printf_di(int n)
  */
 int _printf(const char *format, ...)
 {
-	int i, count;
+	int i, n, count;
 	va_list args;
 
 	va_start(args, format);
@@ -102,7 +111,9 @@ int _printf(const char *format, ...)
 					break;
 				case 'd':
 				case 'i':
-					count += _printf_di(va_arg(args, int));
+					n = va_arg(args, int);
+					printnumber(n);
+					count += count_digits(n);
 					break;
 				default:
 					if (format[i + 1] == '%')
@@ -113,12 +124,9 @@ int _printf(const char *format, ...)
 			}
 			i += 2;
 		}
-		else
-		{
-			_putchar(format[i]);
-			count++;
-			i++;
-		}
+		_putchar(format[i]);
+		count++;
+		i++;
 	}
 	return (count);
 }
