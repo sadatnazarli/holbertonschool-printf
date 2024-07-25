@@ -44,7 +44,7 @@ int _printf(const char *format, ...)
 	i = 0, count = 0;
 	if (!format)
 	{
-		return (0);
+		return (-1);
 	}
     while (format && format[i])
     {
