@@ -45,7 +45,7 @@ int _printf(const char *format, ...)
 	if (!format)
 	{
 		_putchar('\0');
-		return (0);
+		return (1);
 	}
     while (format && format[i])
     {
