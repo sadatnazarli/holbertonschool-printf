@@ -106,27 +106,27 @@ int _printf(const char *format, ...)
 					count += _printf_s(va_arg(args, char*));
 					break;
 				case 'c':
-					_putchar(va_arg(args, int));
-					count++;
+					_putchar(va_arg(args, int)), count++;
 					break;
 				case 'd':
 				case 'i':
 					n = va_arg(args, int);
-					printnumber(n);
-					count += count_digits(n);
+					printnumber(n), count += count_digits(n);
 					break;
 				default:
 					if (format[i + 1] == '%')
 						i += 1;
 					_putchar('%');
-					count++;
-					i = i - 1;
+					count++, i--;
 			}
 			i += 2;
 		}
-		_putchar(format[i]);
-		count++;
-		i++;
+		else
+		{
+			_putchar(format[i]);
+			count++;
+			i++;
+		}
 	}
 	return (count);
 }
