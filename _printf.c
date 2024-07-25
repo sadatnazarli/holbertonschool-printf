@@ -17,8 +17,12 @@ int _printf_s(char *str)
 {
         int j = 0;
         char *ptr =  str;
-    
-        while (ptr && ptr[j])
+
+	if (!ptr)
+	{
+		ptr = "(null)";
+	}
+        while (ptr[j])
         {
                 _putchar(ptr[j]);
                 j++;
